@@ -87,7 +87,7 @@ class Snake extends Component {
       this.SnakeInter = setInterval(this.walk, this.speed);
     }
     if (this.score > 20) {
-      this.speed = 1;
+      this.speed = 50;
       this.mode = "Hard";
       clearInterval(this.SnakeInter);
       this.SnakeInter = setInterval(this.walk, this.speed);
