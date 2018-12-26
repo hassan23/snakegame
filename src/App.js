@@ -138,19 +138,31 @@ class Snake extends Component {
       this.SnakeInter = setInterval(this.walk, this.speed);
     }
     if (e.key === "ArrowUp") {
-      if (this.step !== 30) this.step = -30;
+      if (this.step !== 30) {
+        this.step = -30;
+        this.walk();
+      }
     }
 
     if (e.key === "ArrowDown") {
-      if (this.step !== -30) this.step = 30;
+      if (this.step !== -30) {
+        this.step = 30;
+        this.walk();
+      }
     }
 
     if (e.key === "ArrowLeft") {
-      if (this.step !== 1) this.step = -1;
+      if (this.step !== 1) {
+        this.step = -1;
+        this.walk();
+      }
     }
 
     if (e.key === "ArrowRight") {
-      if (this.step !== -1) this.step = 1;
+      if (this.step !== -1) {
+        this.step = 1;
+        this.walk();
+      }
     }
   };
 
