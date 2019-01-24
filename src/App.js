@@ -45,10 +45,9 @@ class Snake extends Component {
     };
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     document.addEventListener("keydown", this.startGame);
   };
-
   // this call responsible for snakes movement and food serving
   walk = () => {
     this.start = false;
@@ -70,9 +69,15 @@ class Snake extends Component {
       } else {
         console.log("food Eat");
         this.score += 1;
+        let food = parseInt(Math.random() * 900) + 1;
+
+        while (snake.indexOf(food) !== -1) {
+          food = parseInt(Math.random() * 900) + 1;
+        }
+
         this.setState({
-          snake: snake,
-          food: parseInt(Math.random() * 900) + 1
+          snake,
+          food
         });
       }
     }
@@ -138,29 +143,31 @@ class Snake extends Component {
       this.SnakeInter = setInterval(this.walk, this.speed);
     }
     if (e.key === "ArrowUp") {
-      if (this.step !== 30) {
+      if (this.step !== 30 && this.step !== -30) {
         this.step = -30;
+        clearInterval(this.SnakeInter);
+        this.SnakeInter = setInterval(this.walk, this.speed);
         this.walk();
       }
-    }
-
-    if (e.key === "ArrowDown") {
-      if (this.step !== -30) {
+    } else if (e.key === "ArrowDown") {
+      if (this.step !== -30 && this.step !== 30) {
         this.step = 30;
+        clearInterval(this.SnakeInter);
+        this.SnakeInter = setInterval(this.walk, this.speed);
         this.walk();
       }
-    }
-
-    if (e.key === "ArrowLeft") {
-      if (this.step !== 1) {
+    } else if (e.key === "ArrowLeft") {
+      if (this.step !== 1 && this.step !== -1) {
         this.step = -1;
+        clearInterval(this.SnakeInter);
+        this.SnakeInter = setInterval(this.walk, this.speed);
         this.walk();
       }
-    }
-
-    if (e.key === "ArrowRight") {
-      if (this.step !== -1) {
+    } else if (e.key === "ArrowRight") {
+      if (this.step !== -1 && this.step !== 1) {
         this.step = 1;
+        clearInterval(this.SnakeInter);
+        this.SnakeInter = setInterval(this.walk, this.speed);
         this.walk();
       }
     }
